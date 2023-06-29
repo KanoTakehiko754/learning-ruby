@@ -20,3 +20,110 @@ end
 ```
 
 55. **インスタンス変数**とは、インスタンス(オブジェクト)の中でのみ扱える変数であり、メソッド内で`@hoge`と記述することにより参照できる。
+
+56. **インスタンス変数**はインスタンスの中で扱える変数であるのに対し、**ローカル変数**は定義した最も内側のブロックの中でのみ扱える変数。下の例ではageはインスタンス変数なので、そのインスタンスのどのメソッドからでも参照できるのに対し、nameはinitializeメソッドの中のローカル変数なので、nameメソッドからは参照できない。  
+```
+class Dog
+    def initialize(age, name)
+        @age = age # インスタンス変数の定義
+        name = name # ローカル変数の定義
+    end
+
+    def age
+        puts @age
+    end
+
+    def name
+        puts name
+    end
+end
+
+pochi = Dog.new(5, "pochi")
+pochi.age # 5が出力される
+pochi.name # エラー
+```
+
+57, 58. 
+```
+class Human
+    def initialize(name)
+       @name = name
+    end
+  
+    def greet
+      puts "こんにちは。私の名前は#{@name}です"
+    end
+
+    def name # nameのゲッター
+        return @name
+    end
+
+    def set_name(name) # nameのセッター
+        @name = name
+    end
+
+end
+```
+
+59. 
+```
+class Human
+    def initialize(name)
+       @name = name
+    end
+  
+    def greet
+      puts "こんにちは。私の名前は#{@name}です"
+    end
+
+    attr_accessor :name
+
+end
+```
+
+60. インスタンスメソッドとは、それを定義したクラスのインスタンスからのみ呼び出せるメソッドである。  
+```
+class Human
+    def initialize(name, age)
+       @name = name
+       @age = age
+    end
+
+    def show_profile
+        puts "name: #{@name}, age: #{@age}"
+    end
+
+end
+```
+
+61. イニシャライザとは、インスタンスを作成するときに初期設定として実行するメソッドである。`<クラス名>.new`を実行すると、新しいインスタンスを作成し、イニシャライザを実行した後の値を取得できる。  
+```
+class Human
+    def initialize(name, age)
+       @name = name
+       @age = age
+    end
+  
+    def greet
+      puts "こんにちは。私の名前は#{@name}です"
+    end
+end
+```
+
+62. クラスメソッドとは、クラスオブジェクトから呼び出せるメソッドである。  
+```
+class Human
+    def initialize(name)
+       @name = name
+    end
+  
+    def greet
+      puts "こんにちは。私の名前は#{@name}です"
+    end
+
+    def self.greet
+        puts "こんにちは。私はHumanクラスです"
+    end
+
+end
+```
