@@ -127,3 +127,25 @@ class Human
 
 end
 ```
+
+63. 以下の例でSuperHumanはHumanクラスを継承したクラスであるため、同じ名前のメソッドで上書きしない限りは親クラスのメソッドをそのまま継承している。よって、SuperHumanクラスはgreetメソッドを持っている。  
+```
+class Human
+    def initialize(name)
+       @name = name
+    end
+  
+    def greet
+      puts "こんにちは。私の名前は#{@name}です"
+    end
+end
+
+class SuperHuman < Human
+end
+```
+
+64, 65. `exercise3.rbに記述しました。
+
+66. 実行しました。
+
+67. Base64エンコードとはデータをアルファベット、数字、一部の記号の合計64種類の文字を使ったコードに変換する方式である。例えば電子メールにおいては本来この64文字しか使えないため、それ以外の文字(全角文字など)を送信するためには、Base64エンコードによりデータを変換して送信するなどの工夫が必要がある。  
