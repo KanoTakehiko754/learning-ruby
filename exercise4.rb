@@ -1,3 +1,6 @@
+# コマンドライン引数に"rooms"が与えられているか確認
+arg_rooms = ARGV.include?("rooms")
+
 # 標準ライブラリであるjsonをrequire
 require 'json'
 
@@ -13,10 +16,10 @@ room_ids = JSON.parse(response.body)
 
 puts room_ids
 
-# 投稿一覧の取得
-id1 = room_ids["roomIds"][0]# room-1についての投稿を取得
-
-response = Faraday.get("https://next-chat-kohl.vercel.app/api/posts", room_id: id1)
-hoge = JSON.parse(response.body)
-
-puts hoge
+# コマンドライン引数に"rooms"があたえられていなければ投稿一覧の取得と表示
+if ! arg_rooms
+    id1 = room_ids["roomIds"][0]# room-1についての投稿を取得
+    response = Faraday.get("https://next-chat-kohl.vercel.app/api/posts", room_id: id1)
+    posts = JSON.parse(response.body)
+    puts posts
+end
